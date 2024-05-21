@@ -1,0 +1,110 @@
+<!-- public/index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Basic Webpage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #444;
+        }
+        nav a {
+            color: #fff;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+        nav a:hover {
+            background-color: #555;
+        }
+        .container {
+            padding: 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+        .section {
+            margin: 20px 0;
+        }
+        .section h2 {
+            color: #444;
+        }
+        .footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        form input, form textarea {
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        form input[type="submit"] {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        form input[type="submit"]:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to My Webpage!</h1>
+    </header>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    <div class="container">
+        <div class="section" id="home">
+            <h2>Home</h2>
+            <p>Welcome to my website! Here, you'll find information about me, my work, and how to get in touch. Feel free to explore the different sections to learn more.</p>
+        </div>
+        <div class="section" id="about">
+            <h2>About</h2>
+            <p>Hello! I'm Oyenuga Oluwaseun, a web developer with a passion for creating dynamic and responsive websites. With over 5 years of experience in the industry, I have worked on various projects ranging from small business websites to large e-commerce platforms. My expertise lies in front-end development, but I also have a strong background in back-end technologies. I am constantly learning and adapting to new trends and technologies in the web development world.</p>
+        </div>
+        <div class="section" id="contact">
+            <h2>Contact</h2>
+            <p>If you have any questions or would like to discuss a project, please don't hesitate to reach out. You can contact me using the form below:</p>
+            <form action="/submit-form" method="post">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+                <input type="submit" value="Send Message">
+            </form>
+        </div>
+    </div>
+    <div class="footer">
+        <p>&copy; 2024 My Webpage. All rights reserved.</p>
+    </div>
+</body>
+</html>
