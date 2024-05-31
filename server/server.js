@@ -1,19 +1,30 @@
 var app = require('express')();
-// var server = require('http').Server(app);
-var fs = require( 'fs' );
-var server = require('https').createServer({
- key: fs.readFileSync('./server.key'),
- cert: fs.readFileSync('./server.cert'),
- requestCert: false,
- rejectUnauthorized: false
-}, app);
+// var fs = require( 'fs' );
+// var server = require('https').createServer({
+//  key: fs.readFileSync('./server.key'),
+//  cert: fs.readFileSync('./server.cert'),
+//  requestCert: false,
+//  rejectUnauthorized: false
+// }, app);
+app.get("/", (req, res) => res.send("Hello world!"));
+
+const http = require("http");
+
+const server = http.createServer(app);
 var io = require('socket.io')(server);
 
-server.listen(8080, '192.168.0.101');
+const PORT = process.env.PORT
+
+server.listen(PORT, () => {
+    // task 1: log to show server has started
+    console.log(`Server is running on port: ${PORT}`);
+  });
 
 io.on('connection', function (socket) {
     socket.on('join', function (data) {
         socket.join(data.roomId);
+        // task 1: log to show user has joined a room
+        console.log(`User joins room: ${data.roomId}`)
         socket.room = data.roomId;
         const sockets = io.of('/').in().adapter.rooms[data.roomId];
         if(sockets.length===1){
@@ -21,6 +32,8 @@ io.on('connection', function (socket) {
         }else{
             if (sockets.length===2){
                 io.to(data.roomId).emit('ready')
+                // task 1: log to show user B has joined room
+                console.log(`user B has joined ${data.roomId}. Room is now full`)
             }else{
                 socket.room = null
                 socket.leave(data.roomId)
