@@ -16,6 +16,7 @@ class Video extends React.Component {
       streamUrl: '',
       initiator: false,
       peer: {},
+      remoteMessage: '',
       full: false,
       connecting: false,
       waiting: true,
@@ -27,7 +28,6 @@ class Video extends React.Component {
     const socket = io(process.env.REACT_APP_SIGNALING_SERVER);
     const component = this;
     component.userId = shortId.generate()
-    console.log(component.userId)
     this.setState({ socket });
     const { roomId } = this.props.match.params;
     this.getUserMedia().then(() => {
@@ -103,6 +103,10 @@ class Video extends React.Component {
       };
       this.state.socket.emit('signal', signal);
     });
+    peer.on('data', data => {
+      const message = new TextDecoder('utf-8').decode(data);
+      this.setState({remoteMessage: message})
+    });
     peer.on('stream', stream => {
       this.remoteVideo.srcObject = stream;
       this.setState({ connecting: false, waiting: false });
@@ -157,7 +161,9 @@ class Video extends React.Component {
           </div>
         )}
         {this.renderFull()}
-        <ChatBox peer={this.peer} />
+        {
+          this.state.peer && <ChatBox peer={this.state.peer} remoteMessage={this.state.remoteMessage} />
+        }
       </div>
     );
   }

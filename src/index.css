@@ -18,7 +18,7 @@ body, html {
 .enter-room-container form{
   display: flex;
 }
-.enter-room-container, .chatbox input{
+.enter-room-container input, .chatbox input{
   height: 48px;
   background: transparent;
   color: #FFF;
@@ -27,7 +27,7 @@ body, html {
   border:none;
   border-bottom: 2px solid greenyellow;
 }
-.enter-room-container, .chatbox button {
+.enter-room-container button, .chatbox button {
   background: greenyellow;
   width: 100px;
   border: none;
